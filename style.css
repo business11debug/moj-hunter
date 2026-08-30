@@ -1,0 +1,166 @@
+/* Globálne nastavenia pre celú stránku */
+body {
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); /* Príjemný pastelový prechod */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center; /* Zarovná kartu horizontálne na stred */
+    align-items: center;    /* Zarovná kartu vertikálne na stred */
+    min-height: 100vh;      /* Roztiahne pozadie na celú výšku obrazovky */
+    margin: 0;
+}
+
+/* Hlavná hracia karta */
+.hra-kontajner {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 20px; /* Krásne zaoblené rohy karty */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Jemný tieň pod kartou */
+    text-align: center;
+    width: 320px;
+    transition: transform 0.3s ease;
+}
+
+/* Nadpis s menom */
+h2 {
+    color: #333;
+    margin-top: 0;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+/* Veľkosť emoji zvieratka */
+h3 {
+    font-size: 80px;
+    margin: 20px 0;
+    /* Pridáme jemné pulzovanie zvieratku */
+    animation: pulzovanie 3s infinite ease-in-out; 
+}
+
+/* Hlavný text s percentami hladu */
+#hlad-text {
+    display: block;
+    font-size: 22px;
+    color: #555;
+    font-weight: 600;
+    margin-bottom: 25px;
+    height: 30px; /* Rezervuje stabilné miesto pre lietajúci text */
+}
+
+/* Kritický stav - hlad pod 30% */
+.cerveny-text {
+    color: #ff4d4d !important;
+    animation: trasenie 0.2s infinite; /* Text sa bude triasť od strachu/hladu */
+}
+
+/* Box pre tlačidlá */
+.tlacidla-box {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Medzera medzi tlačidlami, ak sú vedľa seba */
+}
+
+/* Všeobecný štýl pre obe tlačidlá */
+button {
+    background-color: #4CAF50; /* Pekná zelená farba */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50px; /* Plne zaoblené pilulkové tlačidlo */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease; /* Plynulá zmena pri hoveri */
+}
+
+/* Efekt pri prejdení myšou nad tlačidlom */
+button:hover:not(:disabled) {
+    background-color: #45a049;
+    transform: translateY(-2px); /* Tlačidlo sa jemne nadvihne */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Efekt pri zatlačení tlačidla */
+button:active:not(:disabled) {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Štýl pre zablokované tlačidlo (keď Hunter zomrie) */
+button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Špecifická modrá farba pre reštartovacie tlačidlo */
+#restart-tlacidlo {
+    background-color: #008CBA;
+}
+#restart-tlacidlo:hover {
+    background-color: #007bb5;
+}
+
+/* Skrytie tlačidla reštartu */
+.skryte {
+    display: none !important;
+}
+
+#hlad-text {
+    position: relative;
+    display: block;
+    font-size: 22px;
+    color: #555;
+    font-weight: 600;
+    margin-bottom: 25px;
+    height: 30px;
+    text-align: center;
+}
+
+/* Efekt odlietavania textu -5% */
+.plavajuci-text {
+    position: absolute;
+    top: 0;
+    color: #ff4d4d;
+    font-weight: bold;
+    font-size: 14px;
+    animation: fadeOutUp 1s forwards;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.plavajuci-text.zeleny {
+    color: #2ecc71;
+    right: 10px;
+}
+.plavajuci-text.cerveny {
+    color: #ff4d4d;
+    left: 20px;
+}
+
+/* --- ANIMÁCIE --- */
+@keyframes fadeOutUp {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes pulzovanie {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes trasenie {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(0px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(2px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(2px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
